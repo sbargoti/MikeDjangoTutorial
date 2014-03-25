@@ -115,6 +115,7 @@ TEMPLATE_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     '/home/sb-u64/localcode/Python/Django/MikeDjangoTutorial/templates',
+    '/home/sb-u64/localcode/Python/Django/MikeDjangoTutorial/articles/templates',
 )
 
 INSTALLED_APPS = (
