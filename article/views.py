@@ -1,10 +1,9 @@
-# from django.http import HttpResponse
-# from django.template.loader import get_template
 from django.shortcuts import render_to_response
-# from django.template import Context
-# from django.views.generic.base import TemplateView
 from article.models import Article
+from article.forms import ArticleForm
 from django.http import HttpResponse
+from django.http import HttpResponseRedirect
+from django.core.context_processors import csrf
 
 # Create your views here.
 def articles(request):
@@ -33,6 +32,23 @@ def language(request, language='en-gb'):
     
     request.session['lang'] = language
     return response
+
+def create(request):
+    if request.POST:
+        form = ArticleForm(request.POST)
+        if form.is_valid():
+            form.save()
+            
+            return HttpResponseRedirect('/articles/all')
+    else:
+        form = ArticleForm()
+        
+    args = {}
+    args.update(csrf(request))
+    
+    args['form'] = form
+    
+    return render_to_response('create_article.html',args)
 ########### FROM TUTORIAL 3 ###########
 #def hello(request):
 #    name = "Annie"
