@@ -1,0 +1,52 @@
+[
+{
+    "pk": 1, 
+    "model": "article.article", 
+    "fields": {
+        "body": "# Django settings for MikeDjangoTutorial project.\r\nimport warnings\r\nimport exceptions\r\nwarnings.filterwarnings(\"ignore\", category=exceptions.RuntimeWarning, module='django.db.backends.sqlite3.base', lineno=53)\r\n\r\nDEBUG = True\r\nTEMPLATE_DEBUG = DEBUG\r\n\r\nADMINS = (\r\n    # ('Your Name', 'your_email@example.com'),\r\n)", 
+        "pub_date": "2014-03-21T10:13:49Z", 
+        "likes": 15, 
+        "title": "test 1"
+    }
+},
+{
+    "pk": 2, 
+    "model": "article.article", 
+    "fields": {
+        "body": "from django.db import models\r\n\r\n# Create your models here.\r\nclass Article(models.Model):\r\n    title = models.CharField(max_length=200)\r\n    body = models.TextField()    \r\n    pub_date = models.DateTimeField('date published')\r\n    likes = models.IntegerField()\r\n    \r\n    def __unicode__(self):\r\n        return self.title", 
+        "pub_date": "2014-03-21T10:15:38Z", 
+        "likes": 2, 
+        "title": "test 2"
+    }
+},
+{
+    "pk": 3, 
+    "model": "article.article", 
+    "fields": {
+        "body": "#class HelloTemplate(TemplateView):\r\n#    template_name = 'hello_class.html'\r\n#    \r\n#    def get_context_data(self, **kwargs):\r\n#        context = super(HelloTemplate,self).get_context_data(**kwargs)\r\n#        context['name'] = 'Suchet'\r\n#        return context\r\n#        \r\n########### END TUTORIAL 3 ###########\r\n", 
+        "pub_date": "2014-03-21T10:15:50Z", 
+        "likes": 3, 
+        "title": "test 3"
+    }
+},
+{
+    "pk": 4, 
+    "model": "article.article", 
+    "fields": {
+        "body": "This is a new admin article", 
+        "pub_date": "2014-03-24T10:55:30Z", 
+        "likes": 3, 
+        "title": "Article admin"
+    }
+},
+{
+    "pk": 5, 
+    "model": "article.article", 
+    "fields": {
+        "body": "Just ceated a new form article", 
+        "pub_date": "2014-11-03T13:00:00Z", 
+        "likes": 0, 
+        "title": "Form Article"
+    }
+}
+]
