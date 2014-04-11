@@ -12,14 +12,18 @@ def articles(request):
     
     if 'lang' in request.COOKIES:
         language = request.COOKIES['lang']
-    
+        
     if 'lang' in request.session:
         session_language = request.session['lang']
         
-    return render_to_response('articles.html',
-                              {'articles' : Article.objects.all(),
-                               'language' : language,
-                               'session_language' : session_language } )
+    args = {}
+    args.update(csrf(request))
+    
+    args['articles'] = Article.objects.all()
+    args['language'] = language   
+    args['session_language'] = session_language 
+    
+    return render_to_response('articles.html', args)
 
 def article(request,article_id=1):
     return render_to_response('article.html',
@@ -60,7 +64,19 @@ def like_article(request, article_id):
         
     return HttpResponseRedirect('/articles/get/%s' % article_id)
 
-
+def search_titles(request):
+    if request.method == "POST":
+        search_text = request.POST['search_text']
+    else:
+        search_text = ''
+        
+    articles = Article.objects.filter(title__contains=search_text)
+    return render_to_response('ajax_search.html', {'articles' : articles})
+    
+#    articles = SearchQuerySet().autocomplete(content_auto=request.POST.get('search_text', ''))            
+#    
+#    return render_to_response('ajax_search.html', {'articles' : articles})
+    
 ########### FROM TUTORIAL 3 ###########
 #def hello(request):
 #    name = "Annie"
